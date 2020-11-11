@@ -96,4 +96,42 @@ describe("Sign In component", () => {
     expect(wrapper.state("email")).toEqual("");
     expect(wrapper.state("password")).toEqual("");
   });
+
+  it("Email don't reset when password is empty", async () => {
+    // Arrange
+    axios.post.mockRejectedValue(new Error("Async error"));
+    // setUp();
+
+    // Act
+    const wrapper = mount(<LoginForm />);
+    wrapper.setState({ email: "wrong@gmail.com", password: "wrong" });
+    wrapper.find(".signInButton").at(1).simulate("click");
+    await resolvePromiseOnSimulate();
+    wrapper.update();
+
+    // Asserterror
+    await expect(wrapper.state("email")).toEqual("wrong@gmail.com");
+    await expect(wrapper.state("password")).toEqual("wrong");
+  });
+
+  it("Render error when email & password don't match/exist", async () => {
+    // Arrange
+    axios.post.mockRejectedValue(new Error("Async error"));
+    // setUp();
+
+    // Act
+    const wrapper = mount(<LoginForm />);
+    wrapper.setState({
+      email: "wrong@gmail.com",
+      password: "wrong",
+      validForm: true,
+    });
+    wrapper.find(".signInButton").at(1).simulate("click");
+    await resolvePromiseOnSimulate();
+    wrapper.update();
+
+    // Assert
+    await expect(wrapper.state("error")).toEqual(true);
+    await expect(wrapper.find(".loginError")).toHaveLength(1);
+  });
 });
