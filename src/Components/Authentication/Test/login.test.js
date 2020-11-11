@@ -37,14 +37,14 @@ describe("Login function", () => {
     // Act & Assert
     expect(() => {
       formsNotEmpty("", "");
-    }).toThrow("Email and/or password is emptyy");
+    }).toBeFalsy;
 
     expect(() => {
       formsNotEmpty("Hello@gmail.com", "");
-    }).toThrow("Email and/or password is emptyy");
+    }).toBeFalsy;
 
     expect(() => {
       formsNotEmpty("", "Password");
-    }).toThrow("Email and/or password is emptyy");
+    }).toBeFalsy;
   });
 });
