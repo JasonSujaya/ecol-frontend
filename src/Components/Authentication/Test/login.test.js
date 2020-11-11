@@ -48,3 +48,52 @@ describe("Login function", () => {
     }).toBeFalsy;
   });
 });
+
+describe("Sign In component", () => {
+  it("Sign in renders correctly", () => {
+    const wrapper = shallow(<LoginForm />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("When input is empty, button is not clickable", async () => {
+    // Act
+    const wrapper = shallow(<LoginForm />);
+    let buttonElement = wrapper.find(".signInButton");
+
+    // Assert
+    expect(wrapper.state("validForm")).toBeFalsy;
+    expect(buttonElement.prop("disabled")).toBeTruthy;
+  });
+
+  it("When input is not empty, button is clickable", async () => {
+    // Act
+    const wrapper = shallow(<LoginForm />);
+    wrapper
+      .find(".emailInput")
+      .simulate("change", { target: { value: "foo" } });
+    wrapper
+      .find(".passwordInput")
+      .simulate("change", { target: { value: "foo" } });
+    let buttonElement = wrapper.find(".signInButton");
+    wrapper.update();
+
+    // Assert
+    expect(wrapper.state("validForm")).toBeTruthy;
+    expect(buttonElement.prop("disabled")).toBeFalsy;
+  });
+
+  it("Reset the input form when sign in is successfull", async () => {
+    // Arrange
+    setUp();
+
+    // Act
+    const wrapper = mount(<LoginForm />);
+    wrapper.find(".signInButton").at(1).simulate("click");
+    await resolvePromiseOnSimulate();
+    wrapper.update();
+
+    // Assert
+    expect(wrapper.state("email")).toEqual("");
+    expect(wrapper.state("password")).toEqual("");
+  });
+});
