@@ -10,6 +10,7 @@ class LoginForm extends React.Component {
     this.state = {
       email: "",
       password: "",
+      error: false,
       validForm: false,
     };
   }
@@ -24,8 +25,19 @@ class LoginForm extends React.Component {
         console.log("Called with good");
       })
       .catch((error) => {
+        this.setState({ error: true });
         console.log("Called with error");
       });
+  };
+
+  onErrorDisplayMessage = () => {
+    if (this.state.error) {
+      return (
+        <div className="loginError">
+          Username and password do not match or you do not have an account yet
+        </div>
+      );
+    }
   };
 
   render() {
@@ -70,6 +82,7 @@ class LoginForm extends React.Component {
             </Button>
           </div>
         </form>
+        {this.onErrorDisplayMessage()}
       </Grid>
     );
   }
