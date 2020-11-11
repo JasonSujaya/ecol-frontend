@@ -29,4 +29,22 @@ describe("Login function", () => {
     // Assert
     expect(response.data.token).toEqual("someMockTokenHere");
   });
+
+  it("Expect function to throw error when email and/or password is inputted", () => {
+    // Arrange
+    setUp();
+
+    // Act & Assert
+    expect(() => {
+      formsNotEmpty("", "");
+    }).toThrow("Email and/or password is emptyy");
+
+    expect(() => {
+      formsNotEmpty("Hello@gmail.com", "");
+    }).toThrow("Email and/or password is emptyy");
+
+    expect(() => {
+      formsNotEmpty("", "Password");
+    }).toThrow("Email and/or password is emptyy");
+  });
 });
