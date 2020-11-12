@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post View Component PostView renders correctly when promise is not resolved 1`] = `ReactWrapper {}`;
+
+exports[`Post View Component PostView renders correctly when promise is resolved 1`] = `ReactWrapper {}`;
