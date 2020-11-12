@@ -5,8 +5,6 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { signUp, inputNotEmpty, checkPassword } from "./authentication.js";
 
-const styles = (theme) => ({});
-
 class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
@@ -16,22 +14,38 @@ class SignUpForm extends React.Component {
       last_name: "",
       password: "",
       validForm: false,
+      error: false,
     };
   }
 
-  onSignUp = (e) => {
+  onClick = () => {
+    console.log("clicked");
+  };
+
+  onSignUp = async (e) => {
     e.preventDefault();
-    if (checkPassword(e)) {
-      signUp(
+    if (checkPassword(this.state.password) == true) {
+      let result = signUp(
         this.state.email,
         this.state.first_name,
         this.state.last_name,
         this.state.password
       );
+      result
+        .then((response) => {
+          this.setState({
+            email: "",
+            first_name: "",
+            last_name: "",
+            password: "",
+          });
+        })
+        .catch((error) => {
+          this.setState({ error: true });
+        });
     } else {
-      console.log(checkPassword(e));
+      console.log(checkPassword(this.state.password));
     }
-    this.setState({ email: "", first_name: "", last_name: "", password: "" });
   };
 
   checkValidForm = (e) => {
@@ -41,6 +55,14 @@ class SignUpForm extends React.Component {
       inputNotEmpty(this.state.first_name) &&
       inputNotEmpty(this.state.last_name);
     this.setState({ validForm: validity });
+  };
+
+  onErrorDisplayMessage = () => {
+    if (this.state.error) {
+      return (
+        <div className="signUpError">You have an existing account already!</div>
+      );
+    }
   };
 
   render() {
@@ -119,6 +141,7 @@ class SignUpForm extends React.Component {
             </Button>
           </div>
         </form>
+        {this.onErrorDisplayMessage()}
       </Grid>
     );
   }
