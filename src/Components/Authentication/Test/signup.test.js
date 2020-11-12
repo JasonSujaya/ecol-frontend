@@ -59,7 +59,7 @@ describe("Sign Up component", () => {
     expect(buttonElement.prop("disabled")).toBeTruthy;
   });
 
-  it("When input is empty, button is not clickable", async () => {
+  it("Display error when user acount exist already", async () => {
     // Arrange
     axios.post.mockRejectedValue(new Error("Async error"));
 
@@ -80,6 +80,21 @@ describe("Sign Up component", () => {
     // Assert
     await expect(wrapper.state("error")).toEqual(true);
     await expect(wrapper.find(".signUpError")).toHaveLength(1);
+  });
+
+  it("When input is empty, button is not clickable", () => {
+    // Act
+    const wrapper = mount(<SignUpForm />);
+    wrapper.setState({
+      password: "hi",
+      validForm: true,
+    });
+    wrapper.find(".signUpButton").at(1).simulate("click");
+    wrapper.update();
+
+    // Assert
+    expect(wrapper.state("invalidPassword")).toEqual(true);
+    expect(wrapper.find(".invalidPasswordError")).toHaveLength(1);
   });
 });
 
