@@ -1,5 +1,9 @@
 import axios from "axios";
 
+export const storeToken = (token) => {
+  localStorage.token = token;
+};
+
 export const login = async (_email, _password) => {
   const user = {
     username: _email,

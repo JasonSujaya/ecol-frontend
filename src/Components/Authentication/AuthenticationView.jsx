@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 class AuthenticationView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { display: "LogIn" };
+    this.state = { display: "SignUp" };
   }
   showAuthDisplay = () => {
     if (this.state.display == "LogIn") {
