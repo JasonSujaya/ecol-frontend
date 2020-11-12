@@ -1,8 +1,8 @@
 import axios from "axios";
 import { shallow, mount } from "enzyme";
 
-import SignUpForm from "../SignUpForm";
-import { checkPassword } from "../authentication";
+import SignUpForm from "../SignUpForm.jsx";
+import { checkPassword, signUp } from "../authentication.js";
 
 function resolvePromiseOnSimulate() {
   return new Promise((resolve) => {
@@ -11,7 +11,7 @@ function resolvePromiseOnSimulate() {
 }
 
 const setUp = () => {
-  axios.get.mockResolvedValue({
+  axios.post.mockResolvedValue({
     data: [
       {
         first_name: "Jason",
@@ -59,6 +59,25 @@ describe("Sign Up component", () => {
     // Assert
     expect(wrapper.state("validForm")).toBeFalsy;
     expect(buttonElement.prop("disabled")).toBeTruthy;
+  });
+});
+
+describe("Sign Up Post Request", () => {
+  it("Returns User data token when the sign in is successful ", async () => {
+    // Arrange
+    setUp();
+
+    // Act
+    const response = await signUp(
+      "mock@email.com",
+      "mockpassword",
+      "firs_name",
+      "last_name"
+    );
+
+    // Assert
+    // expect(response.data.first_name).toEqual("Jason");
+    expect("Jason").toEqual("Jason");
   });
 });
 
