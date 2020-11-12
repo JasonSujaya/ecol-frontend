@@ -26,7 +26,7 @@ export const formsNotEmpty = (_email, _password) => {
   }
 };
 
-export const signUp = (_email, _first_name, _last_name, _password) => {
+export const signUp = async (_email, _first_name, _last_name, _password) => {
   const user = {
     email: _email,
     first_name: _first_name,
@@ -34,17 +34,17 @@ export const signUp = (_email, _first_name, _last_name, _password) => {
     password: _password,
   };
 
-  axios
-    .post(`http://127.0.0.1:8000/api/user/profiles/`, user, {
+  const response = await axios.post(
+    `http://127.0.0.1:8000/api/user/profiles/`,
+    user,
+    {
       headers: {
         "Content-Type": "application/json",
       },
-    })
-    .then((res) => console.log(res))
-    .catch((err) => console.log("Response body", err.response.data));
+    }
+  );
 
-  // Some other JSX
-  console.log("hiiiiiii ssss");
+  return response;
 };
 
 export const inputNotEmpty = (_input) => {

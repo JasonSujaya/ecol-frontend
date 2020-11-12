@@ -12,14 +12,12 @@ function resolvePromiseOnSimulate() {
 
 const setUp = () => {
   axios.post.mockResolvedValue({
-    data: [
-      {
-        first_name: "Jason",
-        last_name: "BackName",
-        id: 1,
-        email: "something@gmail.com",
-      },
-    ],
+    data: {
+      first_name: "Jason",
+      last_name: "BackName",
+      id: 1,
+      email: "mock@gmail.com",
+    },
   });
 };
 
@@ -77,7 +75,7 @@ describe("Sign Up Post Request", () => {
 
     // Assert
     // expect(response.data.first_name).toEqual("Jason");
-    expect("Jason").toEqual("Jason");
+    expect(response.data.email).toEqual("mock@gmail.com");
   });
 });
 
