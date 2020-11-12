@@ -3,7 +3,12 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import { signUp, inputNotEmpty, checkPassword } from "./authentication.js";
+import {
+  signUp,
+  login,
+  inputNotEmpty,
+  checkPassword,
+} from "./authentication.js";
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -17,6 +22,7 @@ class SignUpForm extends React.Component {
       invalidPassword: false,
       invalidPasswordMessage: "",
       error: false,
+      signUpSuccessfull: false,
     };
   }
 
@@ -36,11 +42,16 @@ class SignUpForm extends React.Component {
       );
       result
         .then((response) => {
-          this.setState({
-            email: "",
-            first_name: "",
-            last_name: "",
-            password: "",
+          let result = login(this.state.email, this.state.password);
+          result.then((response) => {
+            this.setState({ email: "", password: "" });
+            this.setState({
+              email: "",
+              first_name: "",
+              last_name: "",
+              password: "",
+            });
+            this.props.onSuccess(response.data.token);
           });
         })
         .catch((error) => {

@@ -22,11 +22,10 @@ class LoginForm extends React.Component {
     result
       .then((response) => {
         this.setState({ email: "", password: "" });
-        console.log("Called with good");
+        this.props.onSuccess(response.data.token);
       })
       .catch((error) => {
         this.setState({ error: true });
-        console.log("Called with error");
       });
   };
 
