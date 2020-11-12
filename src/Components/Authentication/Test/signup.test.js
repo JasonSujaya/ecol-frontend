@@ -58,6 +58,29 @@ describe("Sign Up component", () => {
     expect(wrapper.state("validForm")).toBeFalsy;
     expect(buttonElement.prop("disabled")).toBeTruthy;
   });
+
+  it("When input is empty, button is not clickable", async () => {
+    // Arrange
+    axios.post.mockRejectedValue(new Error("Async error"));
+
+    // Act
+    const wrapper = mount(<SignUpForm />);
+    wrapper.setState({
+      email: "wrong@gmail.com",
+      first_name: "mock_first",
+      last_name: "mock_last",
+      password: "ValidPassword1",
+      validForm: true,
+    });
+    wrapper.find(".signUpButton").at(1).simulate("click");
+    await resolvePromiseOnSimulate();
+    wrapper.update();
+    // console.log(wrapper.debug());
+
+    // Assert
+    await expect(wrapper.state("error")).toEqual(true);
+    await expect(wrapper.find(".signUpError")).toHaveLength(1);
+  });
 });
 
 describe("Sign Up Post Request", () => {
