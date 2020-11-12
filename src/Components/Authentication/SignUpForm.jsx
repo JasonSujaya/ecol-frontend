@@ -14,16 +14,19 @@ class SignUpForm extends React.Component {
       last_name: "",
       password: "",
       validForm: false,
+      invalidPassword: false,
+      invalidPasswordMessage: "",
       error: false,
     };
   }
 
-  onClick = () => {
-    console.log("clicked");
-  };
-
   onSignUp = async (e) => {
     e.preventDefault();
+    this.setState({
+      invalidPassword: true,
+      invalidPasswordMessage: checkPassword(this.state.password),
+    });
+
     if (checkPassword(this.state.password) == true) {
       let result = signUp(
         this.state.email,
@@ -44,7 +47,10 @@ class SignUpForm extends React.Component {
           this.setState({ error: true });
         });
     } else {
-      console.log(checkPassword(this.state.password));
+      this.setState({
+        invalidPassword: true,
+        invalidPasswordMessage: checkPassword(this.state.password),
+      });
     }
   };
 
@@ -61,6 +67,16 @@ class SignUpForm extends React.Component {
     if (this.state.error) {
       return (
         <div className="signUpError">You have an existing account already!</div>
+      );
+    }
+  };
+
+  invalidPasswordDisplayMessage = () => {
+    if (this.state.invalidPasswordMessage) {
+      return (
+        <div className="invalidPasswordError">
+          {this.state.invalidPasswordMessage}
+        </div>
       );
     }
   };
@@ -142,6 +158,7 @@ class SignUpForm extends React.Component {
           </div>
         </form>
         {this.onErrorDisplayMessage()}
+        {this.invalidPasswordDisplayMessage()}
       </Grid>
     );
   }
