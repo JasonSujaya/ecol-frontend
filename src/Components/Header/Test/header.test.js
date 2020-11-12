@@ -1,13 +1,11 @@
 import axios from "axios";
 import { shallow, mount } from "enzyme";
-import { get_post_feed } from "../postview";
 
-import PostView from "../PostView.jsx";
-
+import HeaderView from "../HeaderView";
 describe("Header Component", () => {
   it("Show the email account name when user is logged in", () => {
     // Arrange
-    const wrapper = shallow(<PostView />);
+    const wrapper = shallow(<HeaderView />);
     localStorage.token = "TokenExist";
 
     //Assert
@@ -15,7 +13,7 @@ describe("Header Component", () => {
   });
   it("Button text is logout when user is logged in ", () => {
     // Arrange
-    const wrapper = shallow(<PostView />);
+    const wrapper = shallow(<HeaderView />);
     localStorage.token = "TokenExist";
 
     //Assert
