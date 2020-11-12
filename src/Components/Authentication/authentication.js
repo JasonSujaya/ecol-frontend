@@ -25,3 +25,57 @@ export const formsNotEmpty = (_email, _password) => {
     return false;
   }
 };
+
+export const signUp = (_email, _first_name, _last_name, _password) => {
+  const user = {
+    email: _email,
+    first_name: _first_name,
+    last_name: _last_name,
+    password: _password,
+  };
+
+  axios
+    .post(`http://127.0.0.1:8000/api/user/profiles/`, user, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => console.log(res))
+    .catch((err) => console.log("Response body", err.response.data));
+
+  // Some other JSX
+  console.log("hiiiiiii ssss");
+};
+
+export const inputNotEmpty = (_input) => {
+  if (_input.length != 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export const checkPassword = (password) => {
+  let re = "";
+  if (password != "") {
+    if (password.length < 6) {
+      return "Error: Password must contain at least six characters!";
+    }
+    re = /[0-9]/;
+    if (!re.test(password)) {
+      return "Error: password must contain at least one number (0-9)!";
+    }
+    re = /[a-z]/;
+    if (!re.test(password)) {
+      return "Error: password must contain at least one lowercase letter (a-z)!";
+    }
+    re = /[A-Z]/;
+    if (!re.test(password)) {
+      return "Error: password must contain at least one uppercase letter (A-Z)!";
+    }
+  } else {
+    return "Error: Please check that you've entered and confirmed your password!";
+  }
+
+  return true;
+};

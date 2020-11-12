@@ -2,8 +2,7 @@ import axios from "axios";
 import { shallow, mount } from "enzyme";
 
 import SignUpForm from "../SignUpForm";
-import { login } from "../authentication";
-import { checkPassword, checkForm } from "../password";
+import { checkPassword } from "../authentication";
 
 function resolvePromiseOnSimulate() {
   return new Promise((resolve) => {
