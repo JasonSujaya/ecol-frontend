@@ -44,14 +44,13 @@ class SignUpForm extends React.Component {
         .then((response) => {
           let result = login(this.state.email, this.state.password);
           result.then((response) => {
-            this.setState({ email: "", password: "" });
+            this.props.onSuccess(response.data);
             this.setState({
               email: "",
               first_name: "",
               last_name: "",
               password: "",
             });
-            this.props.onSuccess(response.data.token);
           });
         })
         .catch((error) => {

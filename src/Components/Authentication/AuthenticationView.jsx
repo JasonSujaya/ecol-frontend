@@ -36,7 +36,7 @@ class AuthenticationView extends React.Component {
         <div>
           <SignUpForm
             id="signUpForm"
-            onSuccess={() => this.onSuccesfullAuthentication()}
+            onSuccess={this.onSuccesfullAuthentication}
           ></SignUpForm>
           <div>
             Already registered?
@@ -58,6 +58,9 @@ class AuthenticationView extends React.Component {
   };
 
   onSuccesfullAuthentication = (getData) => {
+    console.log(getData);
+    console.log("Triggered");
+
     storeTokenId(getData);
 
     this.props.onLogin(getData);
