@@ -24,13 +24,11 @@ class LoginForm extends React.Component {
       console.log("Response body", err.response.data)
     );
     this.setState({ userData: data });
-    console.log(this.state.userData);
   };
 
   onLogin = (getData) => {
     this.setState({ loggedInTrue: true, userData: getData });
     this.storeUserState(getData.id);
-    console.log(this.state.userData);
   };
 
   onLogout = () => {

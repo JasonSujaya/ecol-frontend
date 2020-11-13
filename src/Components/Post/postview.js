@@ -41,3 +41,11 @@ export const create = async (_title, _content, _category) => {
 
   return response;
 };
+
+export const getCategoryName = (inputId) => {
+  if (inputId == 1) {
+    return "Category1";
+  } else if (inputId == 2) {
+    return "Category2";
+  }
+};

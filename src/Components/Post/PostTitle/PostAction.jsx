@@ -9,8 +9,8 @@ class PostAction extends React.Component {
   render() {
     return (
       <Grid container>
-        <Typography>October 16</Typography>
-        <Typography>5 minute read</Typography>
+        {/* <Typography> {this.props.data.created_date.slice(0, 10)}</Typography> */}
+        {/* <Typography>{this.props.data.content.length} minute read</Typography> */}
         <BookmarkBorderIcon></BookmarkBorderIcon>
       </Grid>
     );

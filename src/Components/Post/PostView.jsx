@@ -14,7 +14,6 @@ class PostView extends React.Component {
     };
   }
   putPostInState = async () => {
-    console.log("updated");
     let data = await get_post_feed().catch((err) =>
       console.log("Response body", err.response.data)
     );
@@ -23,7 +22,11 @@ class PostView extends React.Component {
   };
 
   async componentDidMount() {
-    this.putPostInState();
+    let data = await get_post_feed().catch((err) =>
+      console.log("Response body", err.response.data)
+    );
+
+    this.setState({ postList: data });
   }
 
   renderPost = () => {
