@@ -1,8 +1,11 @@
 import React from "react";
 import AuthenticationView from "./Components/Authentication/AuthenticationView";
 import HeaderView from "./Components/Header/HeaderView";
-import PostView from "./Components/Post/PostView";
-import { checkForToken } from "./Components/Authentication/authentication";
+import PostView from "./Components/Post/PostView.jsx";
+import {
+  checkForToken,
+  getUser,
+} from "./Components/Authentication/authentication";
 
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -10,14 +13,23 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedInTrue: null,
+      loggedInTrue: false,
       userData: {},
     };
   }
   userSetup = () => {};
 
+  storeUserState = async () => {
+    let data = await getUser(localStorage.id).catch((err) =>
+      console.log("Response body", err.response.data)
+    );
+    this.setState({ userData: data });
+    console.log(this.state.userData);
+  };
+
   onLogin = (getData) => {
     this.setState({ loggedInTrue: true, userData: getData });
+    this.storeUserState(getData.id);
     console.log(this.state.userData);
   };
 
@@ -26,9 +38,13 @@ class LoginForm extends React.Component {
     localStorage.token = "";
   };
 
-  componentDidMount = () => {
-    this.setState({ loggedInTrue: checkForToken() });
-  };
+  async componentDidMount() {
+    this.setState({ loggedInTrue: checkForToken() }, () => {
+      if (this.state.loggedInTrue) {
+        this.storeUserState();
+      }
+    });
+  }
 
   render() {
     return (

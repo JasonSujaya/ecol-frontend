@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const storeTokenId = (data) => {
   localStorage.token = data.token;
-  localStorage.id = data.id;
+  localStorage.id = data.user_id;
 };
 
 export const checkForToken = () => {
@@ -96,4 +96,12 @@ export const checkPassword = (password) => {
   }
 
   return true;
+};
+
+export const getUser = async (id) => {
+  const response = await axios.get(
+    `http://127.0.0.1:8000/api/user/profiles/${id}/`
+  );
+  const data = response.data;
+  return data;
 };

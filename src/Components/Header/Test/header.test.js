@@ -5,7 +5,12 @@ describe("Header Component", () => {
   it("Show the email account name when user is logged in", () => {
     // Arrange
     const loggedInTrueMock = jest.fn(true);
-    const wrapper = shallow(<HeaderView loggedInTrue={loggedInTrueMock} />);
+    const wrapper = shallow(
+      <HeaderView
+        loggedInTrue={loggedInTrueMock}
+        user={{ email: "emailHere" }}
+      />
+    );
 
     //Assert
     expect(wrapper.find(".currentUserEmail")).toHaveLength(1);
