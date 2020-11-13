@@ -31,7 +31,7 @@ export const create = (_title, _content, _category) => {
   axios
     .post(`http://127.0.0.1:8000/api/post-api/post-manager/`, user, {
       headers: {
-        authorization: "Token 2842fcb42b45c2751fdefeba1f3edeee61784534",
+        authorization: `Token ${localStorage.token}`,
         "Content-Type": "application/json",
         Accept: "application/json",
       },

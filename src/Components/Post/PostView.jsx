@@ -37,10 +37,18 @@ class PostView extends React.Component {
     );
   };
 
+  allowPost = () => {
+    return this.props.loggedInTrue ? (
+      <Createpost></Createpost>
+    ) : (
+      <div>HIII</div>
+    );
+  };
+
   render() {
     return (
       <div>
-        <Createpost></Createpost>
+        {this.allowPost()}
         <Box mt="2rem">
           <Grid container spacing={1} direction="column">
             <Grid item container>

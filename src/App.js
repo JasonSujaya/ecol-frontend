@@ -57,7 +57,13 @@ class LoginForm extends React.Component {
               user={this.state.userData}
             ></HeaderView>
           </header>
-          <Route path="/" exact component={PostView}></Route>
+          <Route
+            path="/"
+            exact
+            component={() => (
+              <PostView loggedInTrue={this.state.loggedInTrue} />
+            )}
+          ></Route>
           <Route
             path="/login"
             exact
