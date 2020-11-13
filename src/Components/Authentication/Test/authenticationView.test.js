@@ -35,7 +35,11 @@ describe("Sign In component", () => {
     // Arrange
     const historyMock = { push: jest.fn() };
     const onLoginMock = jest.fn();
-
+    const mockData = {
+      token: "mockTokenValue",
+      user_id: 1,
+      email: "mock@gmail.com",
+    };
     const wrapper = mount(
       <AuthenticationView.WrappedComponent
         history={historyMock}
@@ -45,7 +49,7 @@ describe("Sign In component", () => {
     const instance = wrapper.instance();
 
     // Act
-    instance.onSuccesfullAuthentication("mockTokenValue");
+    instance.onSuccesfullAuthentication(mockData);
 
     // Assert
     expect(localStorage.token).toEqual("mockTokenValue");

@@ -1,7 +1,8 @@
 import axios from "axios";
 
-export const storeToken = (token) => {
-  localStorage.token = token;
+export const storeTokenId = (data) => {
+  localStorage.token = data.token;
+  localStorage.id = data.id;
 };
 
 export const checkForToken = () => {

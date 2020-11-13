@@ -8,8 +8,8 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
+      email: "jason.sujaya@gmail.com",
+      password: "jason.sujaya",
       error: false,
       validForm: false,
     };
@@ -22,7 +22,7 @@ class LoginForm extends React.Component {
     result
       .then((response) => {
         this.setState({ email: "", password: "" });
-        this.props.onSuccess(response.data.token);
+        this.props.onSuccess(response.data);
       })
       .catch((error) => {
         this.setState({ error: true });

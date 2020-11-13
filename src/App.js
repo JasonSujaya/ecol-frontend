@@ -11,12 +11,14 @@ class LoginForm extends React.Component {
     super(props);
     this.state = {
       loggedInTrue: null,
+      userData: {},
     };
   }
   userSetup = () => {};
 
-  onLogin = () => {
-    this.setState({ loggedInTrue: true });
+  onLogin = (getData) => {
+    this.setState({ loggedInTrue: true, userData: getData });
+    console.log(this.state.userData);
   };
 
   onLogout = () => {
@@ -36,6 +38,7 @@ class LoginForm extends React.Component {
             <HeaderView
               onLogout={this.onLogout}
               loggedInTrue={this.state.loggedInTrue}
+              user={this.state.userData}
             ></HeaderView>
           </header>
           <Route path="/" exact component={PostView}></Route>

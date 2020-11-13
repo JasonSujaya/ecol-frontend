@@ -2,7 +2,7 @@ import React from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import Button from "@material-ui/core/Button";
-import { storeToken } from "./authentication.js";
+import { storeTokenId } from "./authentication.js";
 import { withRouter } from "react-router";
 
 class AuthenticationView extends React.Component {
@@ -57,9 +57,10 @@ class AuthenticationView extends React.Component {
     this.setState({ display: type });
   };
 
-  onSuccesfullAuthentication = (tokenValue) => {
-    storeToken(tokenValue);
-    this.props.onLogin();
+  onSuccesfullAuthentication = (getData) => {
+    storeTokenId(getData);
+
+    this.props.onLogin(getData);
     this.props.history.push("/");
   };
 

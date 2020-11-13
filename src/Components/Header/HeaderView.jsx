@@ -11,7 +11,7 @@ import { Link as RouterLink } from "react-router-dom";
 class HeaderView extends React.Component {
   showEmailLoggedIn = () => {
     return this.props.loggedInTrue ? (
-      <div className="currentUserEmail">Email</div>
+      <div className="currentUserEmail">HI</div>
     ) : (
       <div className="empty"></div>
     );
