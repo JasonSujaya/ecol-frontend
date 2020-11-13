@@ -1,6 +1,7 @@
 // import { createShallow, createMount } from "@material-ui/core/test-utils";
 import { shallow, mount } from "enzyme";
 import AuthenticationView from "../AuthenticationView";
+import { checkForToken } from "../authentication";
 
 describe("Sign In component", () => {
   it("Authentication renders correctly", () => {
@@ -67,5 +68,22 @@ describe("Sign In component", () => {
 
     // Assert
     expect(historyMock.push.mock.calls[0]).toEqual(["/"]);
+  });
+});
+
+describe("Token Authentication", () => {
+  it("Expects no token to return False", () => {
+    localStorage.removeItem("token");
+    expect(checkForToken()).toEqual(false);
+  });
+
+  it("Expects no token to return False", () => {
+    localStorage.token = "";
+    expect(checkForToken()).toEqual(false);
+  });
+
+  it("Expects existing token to return True", () => {
+    localStorage.token = "someToken";
+    expect(checkForToken()).toEqual(true);
   });
 });

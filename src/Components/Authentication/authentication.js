@@ -4,6 +4,19 @@ export const storeToken = (token) => {
   localStorage.token = token;
 };
 
+export const checkForToken = () => {
+  let tokenValue = localStorage.token;
+  if (tokenValue != null) {
+    if (tokenValue.length != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+};
+
 export const login = async (_email, _password) => {
   const user = {
     username: _email,

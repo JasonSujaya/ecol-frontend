@@ -2,6 +2,7 @@ import React from "react";
 import AuthenticationView from "./Components/Authentication/AuthenticationView";
 import HeaderView from "./Components/Header/HeaderView";
 import PostView from "./Components/Post/PostView";
+import { checkForToken } from "./Components/Authentication/authentication";
 
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -9,18 +10,22 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedInTrue: true,
+      loggedInTrue: null,
     };
   }
+  userSetup = () => {};
 
   onLogin = () => {
-    console.log("login");
     this.setState({ loggedInTrue: true });
   };
 
   onLogout = () => {
     this.setState({ loggedInTrue: false });
     localStorage.token = "";
+  };
+
+  componentDidMount = () => {
+    this.setState({ loggedInTrue: checkForToken() });
   };
 
   render() {
