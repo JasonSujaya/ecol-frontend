@@ -63,17 +63,8 @@ class AuthenticationView extends React.Component {
     this.props.history.push("/");
   };
 
-  changeLocation = () => {
-    this.props.onLogin();
-  };
-
   render() {
-    return (
-      <div>
-        {this.showAuthDisplay()}
-        <Button onClick={() => this.changeLocation()}>S</Button>
-      </div>
-    );
+    return <div>{this.showAuthDisplay()}</div>;
   }
 }
 
