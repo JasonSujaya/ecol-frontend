@@ -3,7 +3,7 @@ import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import Button from "@material-ui/core/Button";
 import { storeToken } from "./authentication.js";
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router";
 
 class AuthenticationView extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class AuthenticationView extends React.Component {
         <div>
           <SignUpForm
             id="signUpForm"
-            onSuccess={this.onSuccesfullAuthentication}
+            onSuccess={() => this.onSuccesfullAuthentication()}
           ></SignUpForm>
           <div>
             Already registered?
@@ -59,13 +59,22 @@ class AuthenticationView extends React.Component {
 
   onSuccesfullAuthentication = (tokenValue) => {
     storeToken(tokenValue);
-    console.log(localStorage.token);
+    this.props.onLogin();
     this.props.history.push("/");
   };
 
+  changeLocation = () => {
+    this.props.onLogin();
+  };
+
   render() {
-    return <div>{this.showAuthDisplay()} </div>;
+    return (
+      <div>
+        {this.showAuthDisplay()}
+        <Button onClick={() => this.changeLocation()}>S</Button>
+      </div>
+    );
   }
 }
 
-export default AuthenticationView;
+export default withRouter(AuthenticationView);

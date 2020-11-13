@@ -4,13 +4,13 @@ import AuthenticationView from "../AuthenticationView";
 
 describe("Sign In component", () => {
   it("Authentication renders correctly", () => {
-    const wrapper = mount(<AuthenticationView />);
+    const wrapper = mount(<AuthenticationView.WrappedComponent />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it("When display state is login, expect to login component", () => {
     //Arrange
-    const wrapper = shallow(<AuthenticationView />);
+    const wrapper = shallow(<AuthenticationView.WrappedComponent />);
 
     // Act
     wrapper.setState({ display: "LogIn" });
@@ -21,7 +21,7 @@ describe("Sign In component", () => {
 
   it("When display state is signup, expect to signUp component", () => {
     //Arrange
-    const wrapper = shallow(<AuthenticationView />);
+    const wrapper = shallow(<AuthenticationView.WrappedComponent />);
 
     // Act
     wrapper.setState({ display: "SignUp" });
@@ -33,7 +33,14 @@ describe("Sign In component", () => {
   it("On login expect local storage token to be saved", () => {
     // Arrange
     const historyMock = { push: jest.fn() };
-    const wrapper = mount(<AuthenticationView history={historyMock} />);
+    const onLoginMock = jest.fn();
+
+    const wrapper = mount(
+      <AuthenticationView.WrappedComponent
+        history={historyMock}
+        onLogin={onLoginMock}
+      />
+    );
     const instance = wrapper.instance();
 
     // Act
@@ -46,7 +53,13 @@ describe("Sign In component", () => {
   it("On login, expect to navigate to landing", () => {
     // Arrange
     const historyMock = { push: jest.fn() };
-    const wrapper = mount(<AuthenticationView history={historyMock} />);
+    const onLoginMock = jest.fn();
+    const wrapper = mount(
+      <AuthenticationView.WrappedComponent
+        history={historyMock}
+        onLogin={onLoginMock}
+      />
+    );
     const instance = wrapper.instance();
 
     // Act
