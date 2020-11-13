@@ -29,9 +29,9 @@ class PostTitle extends React.Component {
         <CardContent>
           <Grid container>
             <Grid item xs={8}>
-              <Typography variant="subtitle2">
+              {/* <Typography variant="subtitle2">
                 {this.props.data.user}
-              </Typography>
+              </Typography> */}
 
               <Typography variant="subtitle1">
                 {getCategoryName(this.props.data.category)}

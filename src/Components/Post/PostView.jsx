@@ -22,11 +22,7 @@ class PostView extends React.Component {
   };
 
   async componentDidMount() {
-    let data = await get_post_feed().catch((err) =>
-      console.log("Response body", err.response.data)
-    );
-
-    this.setState({ postList: data });
+    this.putPostInState();
   }
 
   renderPost = () => {

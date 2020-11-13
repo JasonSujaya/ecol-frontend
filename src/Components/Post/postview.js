@@ -36,7 +36,7 @@ export const create = async (_title, _content, _category) => {
         Accept: "application/json",
       },
     })
-    .then((res) => console.log(res))
+    .then()
     .catch((err) => console.log("Response body", err.response.data));
 
   return response;
