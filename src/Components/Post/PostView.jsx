@@ -4,6 +4,7 @@ import Box from "@material-ui/core/Box";
 import PostShowBookmark from "./PostTitle/PostShowBookmark";
 import { get_post_feed } from "./postview.js";
 import PostTitle from "./PostTitle/PostTitleView";
+import Createpost from "./CreatePost/CreatePostView";
 
 class PostView extends React.Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class PostView extends React.Component {
   render() {
     return (
       <div>
+        <Createpost></Createpost>
         <Box mt="2rem">
           <Grid container spacing={1} direction="column">
             <Grid item container>
