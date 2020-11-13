@@ -38,23 +38,21 @@ class PostView extends React.Component {
 
   render() {
     return (
-      <div className="rendered"> {this.renderPost()}</div>
-
-      //   <div>
-      //     <Box mt="2rem">
-      //       <Grid container spacing={1} direction="column">
-      //         <Grid item container>
-      //           <Grid item xs={1} sm={1} md={1}></Grid>
-      //           <Grid item xs={12} sm={9} md={7} className="hi">
-      //             <div className="rendered"> {this.renderPost()}</div>
-      //           </Grid>
-      //           <Grid item xs={1} sm={1} md={3}>
-      //             <PostShowBookmark></PostShowBookmark>
-      //           </Grid>
-      //         </Grid>
-      //       </Grid>
-      //     </Box>
-      //   </div>
+      <div>
+        <Box mt="2rem">
+          <Grid container spacing={1} direction="column">
+            <Grid item container>
+              <Grid item xs={1} sm={1} md={1}></Grid>
+              <Grid item xs={12} sm={9} md={7} className="hi">
+                <div className="rendered"> {this.renderPost()}</div>
+              </Grid>
+              <Grid item xs={1} sm={1} md={3}>
+                <PostShowBookmark></PostShowBookmark>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Box>
+      </div>
     );
   }
 }
