@@ -13,12 +13,17 @@ class PostView extends React.Component {
       postList: [],
     };
   }
-  async componentDidMount() {
+  putPostInState = async () => {
+    console.log("updated");
     let data = await get_post_feed().catch((err) =>
       console.log("Response body", err.response.data)
     );
 
     this.setState({ postList: data });
+  };
+
+  async componentDidMount() {
+    this.putPostInState();
   }
 
   renderPost = () => {
@@ -39,7 +44,7 @@ class PostView extends React.Component {
 
   allowPost = () => {
     return this.props.loggedInTrue ? (
-      <Createpost></Createpost>
+      <Createpost putPostInState={this.putPostInState}></Createpost>
     ) : (
       <div>HIII</div>
     );

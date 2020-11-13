@@ -15,7 +15,7 @@ export const get_category = async () => {
   return response;
 };
 
-export const create = (_title, _content, _category) => {
+export const create = async (_title, _content, _category) => {
   const user = {
     title: _title,
     content: _content,
@@ -28,7 +28,7 @@ export const create = (_title, _content, _category) => {
     images: [],
   };
 
-  axios
+  const response = await axios
     .post(`http://127.0.0.1:8000/api/post-api/post-manager/`, user, {
       headers: {
         authorization: `Token ${localStorage.token}`,
@@ -39,5 +39,5 @@ export const create = (_title, _content, _category) => {
     .then((res) => console.log(res))
     .catch((err) => console.log("Response body", err.response.data));
 
-  console.log("signin");
+  return response;
 };

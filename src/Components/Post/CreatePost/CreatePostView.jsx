@@ -24,7 +24,11 @@ class CreatePost extends React.Component {
 
   onSubmitPost = (e) => {
     // e.preventDefault();
-    create(this.state.title, this.state.content, this.state.category);
+    create(this.state.title, this.state.content, this.state.category).then(
+      (res) => {
+        this.props.putPostInState();
+      }
+    );
     this.setState({ title: "", content: "", category: 0 });
   };
 
