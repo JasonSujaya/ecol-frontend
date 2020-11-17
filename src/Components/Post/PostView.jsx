@@ -2,7 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import PostShowBookmark from "./PostTitle/PostShowBookmark";
-import { get_post_feed } from "./postview.js";
+import { get_post_feed } from "./post.js";
 import PostTitle from "./PostTitle/PostTitleView";
 import Createpost from "./CreatePost/CreatePostView";
 

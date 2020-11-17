@@ -1,6 +1,6 @@
 import axios from "axios";
 import { shallow, mount } from "enzyme";
-import { get_post_feed } from "../postview";
+import { get_post_feed } from "../post";
 
 import PostView from "../PostView.jsx";
 

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const get_post_feed = async () => {
   const response = await axios.get(
-    `http://127.0.0.1:8000/api/post-api/post-manager/`
+    `https://ecole-heroku.herokuapp.com/api/post-api/post-manager/`
   );
   const data = response.data;
   return data;
@@ -10,7 +10,7 @@ export const get_post_feed = async () => {
 
 export const get_category = async () => {
   const response = await axios.get(
-    `http://127.0.0.1:8000/api/post-api/post-category/`
+    `https://ecole-heroku.herokuapp.com/api/post-api/post-category/`
   );
   return response;
 };
@@ -29,15 +29,21 @@ export const create = async (_title, _content, _category) => {
   };
 
   const response = await axios
-    .post(`http://127.0.0.1:8000/api/post-api/post-manager/`, user, {
-      headers: {
-        authorization: `Token ${localStorage.token}`,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
+    .post(
+      `https://ecole-heroku.herokuapp.com/api/post-api/post-manager/`,
+      user,
+      {
+        headers: {
+          authorization: `Token ${localStorage.token}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    )
     .then()
     .catch((err) => console.log("Response body", err.response.data));
+  console.log("Triggered");
+  console.log(response);
 
   return response;
 };

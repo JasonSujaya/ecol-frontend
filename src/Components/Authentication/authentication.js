@@ -25,7 +25,7 @@ export const login = async (_email, _password) => {
   };
 
   const response = await axios.post(
-    `http://127.0.0.1:8000/api/user/login/`,
+    `https://ecole-heroku.herokuapp.com/api/user/login/`,
     user,
     {
       headers: {
@@ -53,7 +53,7 @@ export const signUp = async (_email, _first_name, _last_name, _password) => {
   };
 
   const response = await axios.post(
-    `http://127.0.0.1:8000/api/user/profiles/`,
+    `https://ecole-heroku.herokuapp.com/api/user/profiles/`,
     user,
     {
       headers: {
@@ -100,7 +100,7 @@ export const checkPassword = (password) => {
 
 export const getUser = async (id) => {
   const response = await axios.get(
-    `http://127.0.0.1:8000/api/user/profiles/${id}/`
+    `https://ecole-heroku.herokuapp.com/api/user/profiles/${id}/`
   );
   const data = response.data;
   return data;

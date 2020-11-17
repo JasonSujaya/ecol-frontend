@@ -7,7 +7,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 
 import axios from "axios";
-import { get_category } from "../postview.js";
+import { get_category } from "../post.js";
 
 class PostCategory extends React.Component {
   constructor(props) {

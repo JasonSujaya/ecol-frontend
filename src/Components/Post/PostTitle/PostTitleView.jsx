@@ -7,7 +7,7 @@ import Box from "@material-ui/core/Box";
 import imagess from "./image.jpeg";
 import PostAction from "./PostAction";
 import { getUser } from "../../Authentication/authentication";
-import { getCategoryName } from "../postview.js";
+import { getCategoryName } from "../post.js";
 
 class PostTitle extends React.Component {
   state = {
