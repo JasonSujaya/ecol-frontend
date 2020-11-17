@@ -1,7 +1,7 @@
 import React from "react";
 import AuthenticationView from "./Components/Authentication/AuthenticationView";
 import HeaderView from "./Components/Header/HeaderView";
-import PostView from "./Components/Post/PostView.jsx";
+import PostView from "./Components/Post/PostView.js";
 import {
   checkForToken,
   getUser,
