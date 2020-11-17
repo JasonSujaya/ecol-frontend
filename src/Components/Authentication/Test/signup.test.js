@@ -1,7 +1,7 @@
 import axios from "axios";
 import { shallow, mount } from "enzyme";
 
-import SignUpForm from "../SignUpForm.jsx";
+import SignUpForm from "../SignUpForm.js";
 import { checkPassword, signUp } from "../authentication.js";
 
 function resolvePromiseOnSimulate() {

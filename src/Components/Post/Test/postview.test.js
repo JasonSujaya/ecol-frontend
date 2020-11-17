@@ -2,7 +2,7 @@ import axios from "axios";
 import { shallow, mount } from "enzyme";
 import { get_post_feed } from "../post";
 
-import PostView from "../PostView.jsx";
+import PostView from "../PostView.js";
 
 const runAllPromises = () => new Promise(setImmediate);
 function tick() {
