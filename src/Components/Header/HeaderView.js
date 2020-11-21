@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 
+import "./HeaderView.css";
 import { Link as RouterLink } from "react-router-dom";
 
 class HeaderView extends React.Component {
@@ -21,8 +22,9 @@ class HeaderView extends React.Component {
         color="inherit"
         className="buttonLogout"
         onClick={this.props.onLogout}
+        style={{ textTransform: "none" }}
       >
-        Logout
+        <Typography variant="h6">Logout</Typography>
       </Button>
     ) : (
       <Button
@@ -30,22 +32,26 @@ class HeaderView extends React.Component {
         className="buttonLogin"
         component={RouterLink}
         to="/login"
+        style={{ textTransform: "none" }}
       >
-        Login
+        <Typography variant="h6">Login</Typography>
       </Button>
     );
   };
   render() {
-    const { classes } = this.props;
-
     return (
-      <AppBar position="static">
+      <AppBar position="static" color="transparent" className="headContainer">
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component={RouterLink} to="/">
-            Go To Home
+          <Typography
+            id="goHomeLink"
+            variant="h6"
+            component={RouterLink}
+            to="/"
+          >
+            Home
           </Typography>
           <Typography variant="h6">{this.showEmailLoggedIn()}</Typography>
           {this.showLoginOrLogout()}
