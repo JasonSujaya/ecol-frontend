@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { login, formsNotEmpty } from "./authentication.js";
-
+import "./authentication.css";
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -43,7 +43,7 @@ class LoginForm extends React.Component {
     return (
       <Grid container direction="column" justify="center" alignItems="center">
         <form noValidate autoComplete="off">
-          <div>
+          <div className="formContainer">
             <TextField
               required
               id="standard-required"

@@ -3,6 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import "./authentication.css";
+
 import {
   signUp,
   login,
@@ -95,7 +97,7 @@ class SignUpForm extends React.Component {
     return (
       <Grid container direction="column" justify="center" alignItems="center">
         <form noValidate autoComplete="off">
-          <div>
+          <div className="formContainer">
             <TextField
               required
               className="emailInput"

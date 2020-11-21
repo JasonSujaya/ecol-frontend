@@ -4,6 +4,7 @@ import SignUpForm from "./SignUpForm";
 import Button from "@material-ui/core/Button";
 import { storeTokenId } from "./authentication.js";
 import { withRouter } from "react-router";
+import "./authentication.css";
 
 class AuthenticationView extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class AuthenticationView extends React.Component {
   showAuthDisplay = () => {
     if (this.state.display == "LogIn") {
       return (
-        <div>
+        <div className="authenticationContainer">
           <LoginForm
             id="loginForm"
             onSuccess={this.onSuccesfullAuthentication}
@@ -33,7 +34,7 @@ class AuthenticationView extends React.Component {
       );
     } else if (this.state.display == "SignUp") {
       return (
-        <div>
+        <div className="authenticationContainer">
           <SignUpForm
             id="signUpForm"
             onSuccess={this.onSuccesfullAuthentication}
