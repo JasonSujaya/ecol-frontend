@@ -45,7 +45,7 @@ class PostView extends React.Component {
     return this.props.loggedInTrue ? (
       <Createpost putPostInState={this.putPostInState}></Createpost>
     ) : (
-      <div>HIII</div>
+      <div></div>
     );
   };
 
